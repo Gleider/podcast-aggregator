@@ -1,0 +1,23 @@
+{
+  "name": "podcast-aggregator",
+  "version": "1.0.0",
+  "description": "A project of Chingu-Voyage5",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chingu-voyage5/Geckos-Team-11.git"
+  },
+  "keywords": [
+    "podcast",
+    "chingu"
+  ],
+  "author": "Gleider, Jim, Miguel, Rachel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chingu-voyage5/Geckos-Team-11/issues"
+  },
+  "homepage": "https://github.com/chingu-voyage5/Geckos-Team-11#readme"
+}
