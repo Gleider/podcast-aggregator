@@ -1,10 +1,10 @@
-import { urlencoded, json } from 'express';
-import express from 'express';
+const bodyParser = require('body-parser')
+const express = require('express')
 const server = express()
 
 const port = 3003
 
-server.use(urlencoded({ extended: true }))
-server.use(json())
+server.use(bodyParser.urlencoded({ extended: true }))
+server.use(bodyParser.json())
 
 server.listen(port, () => console.log(`Backend is running on port ${port}`))
