@@ -2,10 +2,10 @@
   "name": "podcast-aggregator",
   "version": "0.1.0",
   "description": "A project of Chingu-Voyage5",
-  "main": "index.js",
+  "main": "server/src/loader.js",
   "scripts": {
     "dev": "nodemon",
-    "production": "pm2 start src/loader.js --name podcast-backend"
+    "production": "pm2 start server/src/loader.js --name podcast-backend"
   },
   "repository": {
     "type": "git",
