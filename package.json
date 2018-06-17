@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "nodemon",
     "production": "pm2 start server/src/loader.js --name podcast-backend",
-    "test": "./node_modules/.bin/mocha server/test/**/*.spec.js --require babel-register",
-    "test:tdd": "npm run test -w",
+    "test": "./node_modules/.bin/mocha --timeout 5000 server/test/**/*.spec.js --require babel-register",
+    "test:tdd": "./node_modules/.bin/mocha --timeout 5000 server/test/**/*.spec.js --require babel-register -w",
     "test:coverage": "nyc npm test",
     "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls"
   },
