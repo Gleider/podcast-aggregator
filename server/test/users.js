@@ -1,19 +1,26 @@
+// valid: simple
 const user1 = {
-  "userName": "Gleider37",
+  "username": "Gleider1",
   "password": "abc1234",
   "name": "Gleider Mackedanz",
-  "email": "gleider.ec3@gmail.com"
+  "email": "gleider3@gmail.com"
 }
+// invalid: without email
 const user2 = {
-  "userName": "Gleider",
+  "username": "Gleider2",
   "password": "abc1234",
-  "name": "Gleider Mackedanz",
-  "email": "gleider.ec@gmail.com"
+  "name": "Gleider Mackedanz2"
 }
 
-const user = []
-user.push(user1)
-user.push(user2)
+// invalid: already have the username
+const user3 = {
+  "username": "Gleider1",
+  "password": "abc1234",
+  "name": "Gleider Mackedanz 3",
+  "email": "gleider3@gmail.com"
+}
+
+const user = [user1, user2, user3]
 
 
 module.exports = user
