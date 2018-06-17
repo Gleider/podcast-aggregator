@@ -26,7 +26,7 @@ const socialNetworkSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-  username: { type: String, required: [true, 'Username is required'], lowercase: true, minlength: 3, maxlength: 20, index: { unique: true }},
+  username: { type: String, required: [true, 'Username is required'], lowercase: true, minlength: 3, maxlength: 20, unique: true, },
   password: { type: String, required: [true, 'Password is required'], minlength: 5, maxlength: 30 }, //match: /^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{5,}$/
   name: { type: String, required: [true, 'Name is required'], minlength: 2, maxlength: 20 },
   email: { type: String, required: [true, 'Email is required'], minlength: 7, lowercase: true, unique: true, match: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ },
