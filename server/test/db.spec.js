@@ -6,13 +6,12 @@ const chai = require('chai')
 const chaiHttp = require('chai-http')
 const users = require('./users')
 const server = "http://localhost:3003"
-//const server = require('../src/config/server') //maybe this is the problem
 const should = chai.should()
 
 chai.use(chaiHttp)
 
 describe('User test', () => {
-  beforeEach((done) => {
+  before((done) => {
     mongoose.connect('mongodb://localhost/podcastdb', () => {
       mongoose.connection.db.dropDatabase()
     })
@@ -37,14 +36,42 @@ describe('User test', () => {
     it('should send to database a valid data', (done) => {
       chai.request(server)
         .post('/api/db')
-        .send(users[1])
+        .send(users[0])
         .end((err, res) => {
           res.should.have.status(201)
-          res.body.should.have.property('userName')
+          res.body.should.have.property('username')
+          res.body.should.have.property('password')
+          res.body.should.have.property('name')
+          res.body.should.have.property('email')
           done()
         })
-        
     })
+
+    it('should send to database a invalid data, without email', (done) => {
+      chai.request(server)
+        .post('/api/db')
+        .send(users[1])
+        .end((err, res) => {
+          res.should.have.status(400)
+          res.body.should.have.property('errors')
+          res.body.errors.email.should.have.property('message').eql('Email is required')
+          
+          done()
+        })
+    })
+
+    it('should send to database a invalid data, already has the username', (done) => {
+      chai.request(server)
+        .post ('/api/db')
+        .send(users[2])
+        .end((err, res) => {
+          res.should.have.status(400)
+          res.body.should.have.property('errmsg')
+         
+          done()
+        })
+    })
+  
   })
 
   describe('method /PUT', () => {
