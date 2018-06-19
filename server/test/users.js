@@ -63,10 +63,36 @@ const user3 = {
     }]
 
   }
+
+  const user6 = {
+    "username": "Gleider6",
+    "password": "abc1234",
+    "name": "Gleider Mackedanz 6",
+    "email": "gleider6@gmail.com",
+    "birth": "1986-07-26",
+    "image": "www.imag.com",
+    "avatar": "www.linktoavatar.com",
+    "about": "informations about me",
+    "podcastSubscribed": [{
+      "name": "podcastname",
+      "description": "this is a podcast about...",
+      "image": "www.linktoimage.com",
+      "url": "www.urltopodcast.com",
+      "rss": "www.rsslink.com",
+      "episodes": [{
+        "title": "episodetitle",
+        "description": "episodedescription",
+        "image": "www.linktoimage.com",
+        "duration": "60min",
+        "url": "www.episodeurl.com"
+      }]
+    }]
+
+  }
   
   
 
-const user = [user1, user2, user3, user4, user5]
+const user = [user1, user2, user3, user4, user5, user6]
 
 
 module.exports = user
