@@ -1,5 +1,6 @@
 const restful = require('node-restful')
 const mongoose = restful.mongoose
+const uniqueValidator = require('mongoose-unique-validator')
 
 const episodeSchema = new mongoose.Schema({
   title: { 
@@ -65,7 +66,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Username is required'],
     lowercase: true, 
-    minlength: 3, 
+    minlength: 3,
+    index: true, 
     unique: true 
   },
   password: {
@@ -107,5 +109,7 @@ const userSchema = new mongoose.Schema({
   }
 
 })
+
+userSchema.plugin(uniqueValidator)
 
 module.exports = restful.model('podcastdb', userSchema)
