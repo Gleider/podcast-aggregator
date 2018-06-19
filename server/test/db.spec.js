@@ -103,10 +103,20 @@ describe('User test', () => {
         })
     })
 
-    it('should send to database a valida register with a podcast and two episodes', (done) => {
+    it('should send to database a valid register with a podcast and two episodes', (done) => {
       chai.request(server)
         .post('/api/db')
         .send(users[6])
+        .end((err, res) => {
+          res.should.have.status(201)
+          done()
+        })
+    })
+
+    it('should send to database a valid register withh a podcast, two episodes e social networks', (done) => {
+      chai.request(server)
+        .post('/api/db')
+        .send(users[7])
         .end((err, res) => {
           res.should.have.status(201)
           done()
