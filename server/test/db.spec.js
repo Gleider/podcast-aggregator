@@ -65,9 +65,20 @@ describe('User test', () => {
         .post ('/api/db')
         .send(users[2])
         .end((err, res) => {
+          console.log(res.body)
           res.should.have.status(400)
-          res.body.should.have.property('errmsg')
+          res.body.should.have.property('errors')
          
+          done()
+        })
+    })
+
+    it('should send to database a valid register with a podcast registered', (done) => {
+      chai.request(server)
+        .post('/api/db')
+        .send(users[3])
+        .end((err, res) => {
+          res.should.have.status(201)
           done()
         })
     })
