@@ -88,7 +88,7 @@ const user3 = {
       }]
     }]
   }
-  
+    // valid: register complete with one podcast added and two episodes
   const user7 = {
     "username": "Gleider7",
     "password": "abc1234",
@@ -119,9 +119,43 @@ const user3 = {
       }]
     }]
   }
-  
-
-const user = [user1, user2, user3, user4, user5, user6, user7]
+  // valid: register complete with one podcast added, two episodes and a social network user
+  const user8 = {
+    "username": "Gleider8",
+    "password": "abc1234",
+    "name": "Gleider Mackedanz 8",
+    "email": "gleider8@gmail.com",
+    "birth": "1986-07-26",
+    "image": "www.imag.com",
+    "avatar": "www.linktoavatar.com",
+    "about": "informations about me",
+    "socialNetwork": {
+      "facebook": "www.facebook.com/gleider",
+      "twitter": "www.twitter.com/gleider",
+      "instagram": "www.instagram.com/gleider"
+    },
+    "podcastSubscribed": [{
+      "name": "podcastname",
+      "description": "this is a podcast about...",
+      "image": "www.linktoimage.com",
+      "url": "www.urltopodcast.com",
+      "rss": "www.rsslink.com",
+      "episodes": [{
+        "title": "episodetitle",
+        "description": "episodedescription",
+        "image": "www.linktoimage.com",
+        "duration": "60min",
+        "url": "www.episodeurl.com"
+      }, {
+        "title": "episodetitle2",
+        "description": "episodedescription2",
+        "image": "www.linktoimage2.com",
+        "duration": "60min",
+        "url": "www.episodeurl2.com"
+      }]
+    }]
+  }
+const user = [user1, user2, user3, user4, user5, user6, user7, user8]
 
 
 module.exports = user
