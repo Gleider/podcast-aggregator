@@ -38,9 +38,35 @@ const user3 = {
       "rss": "www.rsslink.com"
     }
   }
+
+  const user5 = {
+    "username": "Gleider5",
+    "password": "abc1234",
+    "name": "Gleider Mackedanz 5",
+    "email": "gleider5@gmail.com",
+    "birth": "1986-07-26",
+    "image": "www.imag.com",
+    "avatar": "www.linktoavatar.com",
+    "about": "informations about me",
+    "podcastSubscribed": [{
+      "name": "podcastname",
+      "description": "this is a podcast about...",
+      "image": "www.linktoimage.com",
+      "url": "www.urltopodcast.com",
+      "rss": "www.rsslink.com"
+    },{
+      "name": "podcastname2",
+      "description": "this is a podcast about...",
+      "image": "www.linktoimage2.com",
+      "url": "www.urltopodcast2.com",
+      "rss": "www.rsslink2.com"
+    }]
+
+  }
+  
   
 
-const user = [user1, user2, user3, user4]
+const user = [user1, user2, user3, user4, user5]
 
 
 module.exports = user
