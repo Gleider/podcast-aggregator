@@ -125,19 +125,40 @@ describe('User test', () => {
   })
 
   describe('method /PUT', () => {
-    /*db.route('test', (req, res, next) => {
-      db.aggregate({
-        $project:{ email: "$email"}
-      },
-        (err, result) => {
-          if(err){
-            res.status(500).json({errors: [err]})
-          } else {
-            res.json(result[0])
-          }
-        }
-      )
-    })*/
+    it('should modify the name on database', (done) => {
+      db.findOne({'email': 'gleider1@gmail.com'}, '_id', (err, data) => {
+        if(err) return handleError(err)
+        chai.request(server)
+          .put(`/api/db/${data._id}`)
+          .send({name: 'Gleider de Campos'})
+          .end((err, res) => {
+            res.should.have.status(200)
+            res.body.should.have.property('name').eql('Gleider de Campos')
+            done()
+          })
+      })
+    })
+
+    it('should add a new podcast to a given user', (done) => {
+      db.findOne({'email': 'gleider1@gmail.com'}, '_id', (err, data) => {
+        if(err) return handleError(err)
+        chai.request(server)
+          .put(`/api/db/${data._id}`)
+          .send({podcastSubscribed: [{
+            name: "podcastname",
+            description: "this is a podcast about...",
+            image: "www.linktoimage.com",
+            url: "www.urltopodcast.com",
+            rss: "www.rsslink.com",
+          }]})
+          .end((err, res) => {
+            res.should.have.status(200)
+            done()
+          })
+      })
+    })
+
+    //it('should add a new podcast where already have one', (done))
   })
 
   describe('method /DELETE', () => {
