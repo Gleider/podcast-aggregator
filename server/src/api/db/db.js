@@ -62,13 +62,14 @@ const socialNetworkSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
+  
   username: { 
     type: String,
     required: [true, 'Username is required'],
     lowercase: true, 
     minlength: 3,
     index: true, 
-    unique: true 
+    unique: true
   },
   password: {
     type: String, 
@@ -107,7 +108,9 @@ const userSchema = new mongoose.Schema({
   history: { 
     type: String 
   }
-
+},
+{
+  id: false
 })
 
 userSchema.plugin(uniqueValidator)

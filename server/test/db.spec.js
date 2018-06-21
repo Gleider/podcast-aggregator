@@ -65,7 +65,6 @@ describe('User test', () => {
         .post ('/api/db')
         .send(users[2])
         .end((err, res) => {
-          console.log(res.body)
           res.should.have.status(400)
           res.body.should.have.property('errors')
          
@@ -113,7 +112,7 @@ describe('User test', () => {
         })
     })
 
-    it('should send to database a valid register withh a podcast, two episodes e social networks', (done) => {
+    it('should send to database a valid register with a podcast, two episodes e social networks', (done) => {
       chai.request(server)
         .post('/api/db')
         .send(users[7])
@@ -126,7 +125,19 @@ describe('User test', () => {
   })
 
   describe('method /PUT', () => {
-
+    /*db.route('test', (req, res, next) => {
+      db.aggregate({
+        $project:{ email: "$email"}
+      },
+        (err, result) => {
+          if(err){
+            res.status(500).json({errors: [err]})
+          } else {
+            res.json(result[0])
+          }
+        }
+      )
+    })*/
   })
 
   describe('method /DELETE', () => {
