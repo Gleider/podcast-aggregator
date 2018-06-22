@@ -179,6 +179,16 @@ describe('User test', () => {
   })
 
   describe('method /DELETE', () => {
-
+    it('should delete a user with all informations', (done) => {
+      db.findOne({'email': 'gleider7@gmail.com'}, '_id', (err, data) => {
+        if(err) return handleError(err)
+        chai.request(server)
+          .delete(`/api/db/${data._id}`)
+          .end((err, res) => {
+            res.should.have.status(204)
+            done()
+          })
+      })
+    })
   })
 })
