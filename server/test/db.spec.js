@@ -158,7 +158,24 @@ describe('User test', () => {
       })
     })
 
-    //it('should add a new podcast where already have one', (done))
+    it('should add a new podcast where already have one', (done) => {
+      update = {
+              name: "podcastname2",
+              description: "this is a podcast about...",
+              image: "www.linktoimage2.com",
+              url: "www.urltopodcast2.com",
+              rss: "www.rsslink2.com"
+            }
+      db.findOneAndUpdate({'email': 'gleider1@gmail.com'}, {$push: {podcastSubscribed: update}}, (err, data) => {
+        if(err) return handleError(err)
+        chai.request(server)
+          .put(`/api/db/${data._id}`)
+          .end((err, res) => {
+            res.should.have.status(200)
+            done()
+          })
+      })
+    })
   })
 
   describe('method /DELETE', () => {
