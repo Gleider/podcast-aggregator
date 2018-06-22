@@ -1,0 +1,32 @@
+.subscription {
+  border-top: 1px solid #ccc;
+  align-items: center;
+  padding: 10px 20px;
+  margin-left: 0px !important;
+  
+  .subscription-image {
+    border-radius: 50%;
+    height: 2.2rem;
+    width: auto;
+  }
+  
+  .subscription-title {
+    padding: 0 15px;
+    margin: 0;
+    width: 200px;
+    max-width: 200px;
+    overflow: hidden;
+  }
+  
+  .subscription-cancel {
+    background: #DB524C;
+    color: white;
+    width: 35px;
+    height: 25px;
+    border-radius: 20%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+}
