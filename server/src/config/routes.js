@@ -44,7 +44,49 @@ module.exports = (server) => {
     res.send('podcast page')
   })
 
+  nav.route('/podcast/tags/:id').get((req, res, next) => {
+    res.send('podcast tag page')
+  })
+
   nav.route('/podcast/:id').get((req, res, next) => {
     res.send('podcast name page')
+  })
+
+  nav.route('/podcast/search').get((req, res, next) => {
+    res.send('podcast search page')
+  })
+
+  nav.route('/podcast/:podcast/:id').get((req, res, next) => {
+    res.send('episode page')
+  })
+
+  nav.route('/podcast/top').get((req, res, next) => {
+    res.send('top page')
+  })
+
+  // just logged
+
+  nav.route('/podcast/:id/subscribe').post((req, res, next) => {
+    res.send('Subscribe podcast page')
+  })
+
+  nav.route('/user/profile').get((req, res, next) => {
+    res.send('profile page')
+  })
+
+  nav.route('/user/profile').put((req, res, next) => {
+    res.send('profile page')
+  })
+
+  nav.route('user/list').get((req, res, next) => {
+    res.send('list podcast page')
+  })
+
+  nav.route('user/list').put((req, res, next) => {
+    res.send('list podcast page')
+  })
+
+  nav.route('user/list').delete((req, res, next) => {
+    res.send('list podcast page')
   })
 }
