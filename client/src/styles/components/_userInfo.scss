@@ -1,0 +1,25 @@
+.user-info-wrapper {
+  border: 1px solid #ccc;
+  padding: 50px;
+  
+  #user-info-image-wrapper {
+    display: grid;
+    
+    img {
+      width: 11em;
+      height: 10em;
+      position: relative;
+      left: 25%;
+    }
+    
+    button {
+      width: 11em;
+      margin: 0 auto;
+    }
+  }
+  
+  #user-info-password {
+    margin: 0 15px;
+    font-weight: bold;
+  }
+}

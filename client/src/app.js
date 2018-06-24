@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Subscriptions from './components/Subscriptions';
+import UserInfo from './components/UserInfo';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,6 +41,7 @@ const subscriptions = [{
 
 
 ReactDOM.render(
-  <Subscriptions onUserPage={true} subscriptions={subscriptions} />,
+  // <Subscriptions onUserPage={true} subscriptions={subscriptions} />,
+  <UserInfo image={imageLink} />,
   document.getElementById("app")
 );
