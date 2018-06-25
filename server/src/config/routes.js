@@ -13,11 +13,16 @@ module.exports = (server) => {
  
   // navegation methods
   nav.route('/login').get((req, res, next) => {
-    res.send('login page..')
+    res.send('login page...')
   })
 
   nav.route('/login').post((req, res, next) => {
-    res.send('login page..')
+    const username = req.body.username
+    const password = req.body.password
+
+    res.send(`
+      username: ${username}
+      password: ${password}`)
   })
 
   nav.route('/logout').get((req, res, next) => {
