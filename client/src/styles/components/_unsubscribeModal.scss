@@ -1,0 +1,27 @@
+.ReactModal__Content {
+  padding: 0 !important;
+}
+
+.unsubscribe-modal-info {
+  padding: 20px;
+}
+
+.unsubscribe-modal-buttons {
+  display: flex;
+  
+  .btn {
+    width: 50%;
+    border-radius: 0;
+    color:white;
+  }
+  
+  #unsubscribe {
+    background: rgb(252,113,106);
+    border-color: rgb(252,113,106);
+  }
+  
+  #dontUnsubscribe {
+    background: rgb(182,189,206);
+    border-color: rgb(182,189,206);
+  }
+}

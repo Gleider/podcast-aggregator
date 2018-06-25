@@ -41,7 +41,7 @@ const subscriptions = [{
 
 
 ReactDOM.render(
-  // <Subscriptions onUserPage={true} subscriptions={subscriptions} />,
-  <UserInfo image={imageLink} />,
+  <Subscriptions onUserPage={true} subscriptions={subscriptions} />,
+  // <UserInfo image={imageLink} />,
   document.getElementById("app")
 );

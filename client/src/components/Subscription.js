@@ -9,10 +9,10 @@ const Subscription = (props) => {
       <p className="subscription-title">{ props.title }</p>
       {props.onUserPage && 
         <button 
-          className="subscription-cancel"
+          className="btn btn-danger btn-sm"
           onClick={(e) => {
-            props.cancelSubscription(props.id)
-          }}>X</button>
+            props.setSelectedSubscription(props.id);
+          }}>Unsubscribe</button>
       }
     </div>
   );
@@ -27,5 +27,3 @@ export default Subscription;
 // - image                  :string
 // - onUserPage             :boolean
 // - cancelSubscription(id) :function
-
-// <div style="display:flex;align-items:center;width:100px;font-size:1em;">Text Content</div>
