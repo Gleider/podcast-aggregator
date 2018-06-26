@@ -9,6 +9,7 @@
 
     "test": "./node_modules/.bin/mocha --timeout 5000 server/test/**/*.spec.js --require babel-register",
     "test:tdd": "./node_modules/.bin/mocha --timeout 5000 server/test/**/*.spec.js --require babel-register -w",
+    "test:routes": "./node_modules/.bin/mocha --timeout 5000 server/test/routes.spec.js --require babel-register -w",
     "test:coverage": "nyc npm test",
     "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls",
     "build": "webpack",
