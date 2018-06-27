@@ -7,6 +7,7 @@ module.exports = (server) => {
   server.use('/api', router)
   server.use('', nav)
 
+  const db = require('../api/db/dbService')
   const DataBase = require('../api/db/dbService')
   DataBase.register(router, '/db')
 
@@ -17,12 +18,16 @@ module.exports = (server) => {
   })
 
   nav.route('/login').post((req, res, next) => {
-    const username = req.body.username
-    const password = req.body.password
+    const user = req.body.username
+    const pass = req.body.password
 
-    res.send(`
-      username: ${username}
-      password: ${password}`)
+    db.findOne({username: user}).then(userFind => {
+      if(userFind) {
+        res.send('user finded')
+      } else{
+        res.send('user not finded')
+      }
+    })
   })
 
   nav.route('/logout').get((req, res, next) => {
