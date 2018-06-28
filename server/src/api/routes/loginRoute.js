@@ -13,7 +13,7 @@ module.exports = {
       if(userFind) {
         res.send('user finded')
       } else{
-        res.send('user not finded')
+        res.status(404).json({ username: 'user not found' })
       }
     })
   }
