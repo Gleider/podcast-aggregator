@@ -41,8 +41,10 @@ describe('Routes test', () => {
         .post('/login')
         .send({username:'test'})
         .end((err, res) => {
-          res.should.have.status(200)
-          res.text.should.eqls('user not finded')
+          res.should.have.status(404)
+          res.should.be.json
+          res.body.should.have.property('username').eqls('user not found')
+          
           done()
         })
     })
