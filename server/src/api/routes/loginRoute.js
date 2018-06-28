@@ -6,15 +6,15 @@ module.exports = {
   },
 
   loginPost(req, res, next){
-      const user = req.body.username
-      const pass = req.body.password
+    const user = req.body.username
+    const pass = req.body.password
 
-      db.findOne({username: user}).then(userFind => {
-        if(userFind) {
-          res.send('user finded')
-        } else{
-          res.send('user not finded')
-        }
-      })
-    }
+    db.findOne({username: user}).then(userFind => {
+      if(userFind) {
+        res.send('user finded')
+      } else{
+        res.send('user not finded')
+      }
+    })
+  }
 }
