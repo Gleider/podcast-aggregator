@@ -14,8 +14,8 @@ module.exports = (server) => {
 
  
   // navegation methods
+  // login routes
   nav.route('/login').get(login.loginGet)
-
   nav.route('/login').post(login.loginPost)
 
   nav.route('/logout').get((req, res, next) => {
