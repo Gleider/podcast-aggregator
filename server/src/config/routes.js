@@ -1,4 +1,5 @@
 const express = require('express')
+const login = require('../api/routes/loginRoute')
 
 module.exports = (server) => {
   const router = express.Router()
@@ -7,28 +8,15 @@ module.exports = (server) => {
   server.use('/api', router)
   server.use('', nav)
 
-  const db = require('../api/db/dbService')
+  
   const DataBase = require('../api/db/dbService')
   DataBase.register(router, '/db')
 
  
   // navegation methods
-  nav.route('/login').get((req, res, next) => {
-    res.send('login page...')
-  })
+  nav.route('/login').get(login.loginGet)
 
-  nav.route('/login').post((req, res, next) => {
-    const user = req.body.username
-    const pass = req.body.password
-
-    db.findOne({username: user}).then(userFind => {
-      if(userFind) {
-        res.send('user finded')
-      } else{
-        res.send('user not finded')
-      }
-    })
-  })
+  nav.route('/login').post(login.loginPost)
 
   nav.route('/logout').get((req, res, next) => {
     res.send('logout page')
