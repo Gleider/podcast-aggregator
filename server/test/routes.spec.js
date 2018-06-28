@@ -25,18 +25,24 @@ describe('Routes test', () => {
           done()
         })
     })
-    it('should post to login page', (done) => {
+    it('should post a valid user to login page', (done) => {
       
       chai.request(server)
         .post('/login')
-        .set('content-type', 'application/x-www-form-urlencoded')
         .send({username:'gleider1'})
         .end((err, res) => {
-          
-          console.log()
           res.should.have.status(200)
-          //res.body.should.have.property('username')
-          //res.body.SUCCESS.should.have.property('lastName');
+          res.text.should.eqls('user finded')
+          done()
+        })
+    })
+    it('should post an invalid user to login page', (done) => {
+      chai.request(server)
+        .post('/login')
+        .send({username:'test'})
+        .end((err, res) => {
+          res.should.have.status(200)
+          res.text.should.eqls('user not finded')
           done()
         })
     })
