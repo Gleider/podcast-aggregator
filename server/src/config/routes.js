@@ -1,5 +1,6 @@
 const express = require('express')
 const login = require('../api/routes/loginRoute')
+const register = require('../api/routes/registerRoute')
 
 module.exports = (server) => {
   const router = express.Router()
@@ -18,20 +19,12 @@ module.exports = (server) => {
   nav.route('/login').get(login.loginGet)
   nav.route('/login').post(login.loginPost)
 
+  // register routes
+  nav.route('/register').get(register.registerGet)
+  nav.route('/register').post(register.registerPost)
+
   nav.route('/logout').get((req, res, next) => {
     res.send('logout page')
-  })
-
-  nav.route('/logout').post((req, res, next) => {
-    res.send('logout page')
-  })
-
-  nav.route('/register').get((req, res, next) => {
-    res.send('register page')
-  })
-
-  nav.route('/register').post((req, res, next) => {
-    res.send('register page')
   })
 
   nav.route('/user/:id').get((req, res, next) => {
