@@ -1,6 +1,6 @@
 .user-info-wrapper {
-  border: 1px solid #ccc;
-  padding: 50px;
+  padding: 40px 20px;
+  border-bottom: $box-border;
   
   #user-info-image-wrapper {
     display: grid;
@@ -8,13 +8,15 @@
     img {
       width: 11em;
       height: 10em;
-      position: relative;
-      left: 25%;
+      margin: 0 auto;
     }
     
-    button {
+    .btn {
       width: 11em;
       margin: 0 auto;
+      background: $light-green;
+      border-color: $light-green;
+      color: white;
     }
   }
   
@@ -22,4 +24,8 @@
     margin: 0 15px;
     font-weight: bold;
   }
+}
+
+#newPasswordWrapper.passwordDisabled div label {
+  color: $light-grey;
 }
