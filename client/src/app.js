@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Subscriptions from './components/Subscriptions';
-import UserInfo from './components/UserInfo';
+import UserInfoPage from './components/UserInfoPage';
 import 'normalize.css/normalize.css';
 import './styles/style.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,30 +9,35 @@ const imageLink = 'https://i1.wp.com/christopherscottedwards.com/wp-content/uplo
 const subscriptions = [{
     id: 1,
     title: 'Under the Skin with Russell Brand',
+    episode: '#052 Freedom and Tyranny (with Jordan Peterson)',
     image: imageLink,
     onUserPage: true
   },
   {
     id: 2,
     title: 'From Our Own Correspondent',
+    episode: 'The Taste of Climate Change',
     image: imageLink,
     onUserPage: true
   },
   {
     id: 3,
     title: 'Coffee House Shots',
+    episode: 'How the Treasury really is "the enemy of Brexit"',
     image: imageLink,
     onUserPage: true
   },
   {
     id: 4,
     title: 'No Such Thing as a Fish',
+    episode: 'Episode 222: No Such Thing As A Warmongering Pigeon',
     image: imageLink,
     onUserPage: true
   },
   {
     id: 5,
     title: 'Stuff You Missed in History Class',
+    episode: 'SYMHC Classics: Mansa Musa and the City of Gold',
     image: imageLink,
     onUserPage: true
   }
@@ -41,7 +45,6 @@ const subscriptions = [{
 
 
 ReactDOM.render(
-  <Subscriptions onUserPage={true} subscriptions={subscriptions} />,
-  // <UserInfo image={imageLink} />,
+  <UserInfoPage data={subscriptions} image={imageLink} />,
   document.getElementById("app")
 );
