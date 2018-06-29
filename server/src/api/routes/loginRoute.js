@@ -25,6 +25,12 @@ module.exports = {
         res.status(404).json({ username: 'user or password invalid' })
       }
     })
+  },
+  validateToken(req, res, next) {
+    const token = req.body.token || ''
+    jwt.verify(token, env.authSecret, (err, decoded) => {
+      return res.status(200).send({ valid: !err })
+    })
   }
 
 }
