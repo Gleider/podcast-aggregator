@@ -39,12 +39,5 @@ module.exports = {
     })
 
       res.send('register page')
-  },
-
-  validateToken(req, res, next) {
-    const token = req.body.token || ''
-    jwt.verify(token, env.authSecret, (err, decoded) => {
-      return res.status(200).send({ valid: !err })
-    })
   }
 }
