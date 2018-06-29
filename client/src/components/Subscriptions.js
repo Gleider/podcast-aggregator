@@ -39,20 +39,24 @@ export default class Subscriptions extends React.Component {
 
   render() {
     return (
-      <div className="subscriptions">
-        {this.props.onUserPage && <h2>Subscriptions</h2>}
-        {this.state.subscriptions.map(
-          (sub, index) => (
-            <Subscription 
-              key={index}
-              id={sub.id}
-              title={sub.title}
-              image={sub.image}
-              onUserPage={this.props.onUserPage}
-              setSelectedSubscription={this.setSelectedSubscription}
-            />
-          )
-        )}
+      <div id="subscriptions-wrapper">
+        {this.props.onUserPage && <h2 id="subscriptions-header">Subscriptions</h2>}
+        <table class="table" id="subscriptions-table">
+          <tbody>
+            {this.state.subscriptions.map(
+              (sub, index) => (
+                <Subscription 
+                  key={index}
+                  id={sub.id}
+                  title={sub.title}
+                  image={sub.image}
+                  onUserPage={this.props.onUserPage}
+                  setSelectedSubscription={this.setSelectedSubscription}
+                />
+              )
+            )}
+          </tbody>
+        </table>
         <UnsubscribeModal
           selectedSubscription={this.state.selectedSubscription}
           cancelSubscription={this.cancelSubscription}

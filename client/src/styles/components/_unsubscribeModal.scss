@@ -10,18 +10,15 @@
   display: flex;
   
   .btn {
-    width: 50%;
     border-radius: 0;
     color:white;
   }
   
   #unsubscribe {
-    background: rgb(252,113,106);
-    border-color: rgb(252,113,106);
+    @include buttonOfColor($danger-red, 50%);
   }
   
   #dontUnsubscribe {
-    background: rgb(182,189,206);
-    border-color: rgb(182,189,206);
+    @include buttonOfColor($light-grey, 50%);
   }
 }
