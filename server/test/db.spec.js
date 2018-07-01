@@ -5,7 +5,7 @@ const db = require('../src/api/db/db')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const users = require('./users')
-const server = "http://localhost:3003"
+const server = "http://localhost:3000"
 const should = chai.should()
 
 chai.use(chaiHttp)
@@ -22,7 +22,7 @@ describe('User test', () => {
   describe('method /GET', () => {
     it('should return a array', (done) => {
       chai.request(server)
-        .get('/api/db')
+        .get('/oapi/db')
         .end((error, res) => {
           res.should.have.status(200)
           res.body.should.be.a('array')
