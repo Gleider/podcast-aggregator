@@ -16,7 +16,7 @@ module.exports = (server) => {
   protectedApi.use(auth)
 
   const DataBase = require('../api/db/dbService')
-  DataBase.register(protectedApi, '/db')
+  DataBase.register(openApi, '/db')
 
   // navegation methods
   // login routes
