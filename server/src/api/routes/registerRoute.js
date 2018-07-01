@@ -28,7 +28,7 @@ module.exports = {
         return res.status(400).send({ errors: ['User already exists']})
       } else {
         const newUser = new user({ username, email, password: passwordHash, name, avatar })
-        user.save(err => {
+        newUser.save(err => {
           if(err){
             return res.status(400).send({ err: ['Database error']})
           } else {
