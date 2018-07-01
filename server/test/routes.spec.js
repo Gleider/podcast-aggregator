@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'test';
 
 const chai = require('chai')
 const chaiHttp = require('chai-http')
-const server = "http://localhost:3003"
+const server = "http://localhost:3000"
 
 const users = require('../src/api/db/db')
 
