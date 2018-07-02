@@ -74,8 +74,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String, 
     required: [true, 'Password is required'], 
-    minlength: 5, 
-    maxlength: 30 
+    minlength: 5 
   },
      //match: /^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{5,}$/
   name: { 
