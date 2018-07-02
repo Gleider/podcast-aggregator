@@ -11,12 +11,12 @@ module.exports = {
   },
 
   loginPost(req, res, next){
-    const user = req.body.username
-    const pass = req.body.password
+    const username = req.body.username
+    const password = req.body.password
 
-    db.findOne({ username: user }).then(userFind => {
-      if(userFind && bcrypt.compareSync(pass, userFind.password)) {
-        const token = jwt.sign(userFind, env.authSecret, {
+    db.findOne({ username }).then(userFind => {
+      if(userFind && bcrypt.compareSync(password, userFind.password)) {
+        const token = jwt.sign({ userFind }, env.authSecret, {
           expiresIn: "1 day"
         })
         const { username } = userFind
