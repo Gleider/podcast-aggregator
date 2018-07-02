@@ -35,7 +35,7 @@ describe('User test', () => {
   describe('method /POST', () => {
     it('should send to database a valid data', (done) => {
       chai.request(server)
-        .post('/api/db')
+        .post('/oapi/db')
         .send(users[0])
         .end((err, res) => {
           res.should.have.status(201)
