@@ -23,7 +23,7 @@ module.exports = {
     if(!bcrypt.compareSync(confirmPassword, passwordHash)){
       return res.status(400).send({ errors: ["Passwords don't match"]})
     }
-    db.findOne({ username: user }).then(userFind => {
+    db.findOne({ username }).then(userFind => {
       if(userFind) {
         return res.status(400).send({ errors: ['User already exists']})
       } else {
@@ -37,23 +37,14 @@ module.exports = {
         }
         db.create(newUser, (err) => {
           if(err){
-            console.log(err)
             res.send(err)
             return res.status(400).send({ err: ['Database error']})
           } else {
             res.json({ username })
           }
         })
-        // newUser.save(err => {
-        //   if(err){
-        //     return res.status(400).send({ err: ['Database error']})
-        //   } else {
-        //     res.json({ username, token })
-        //   }
-        // })
+        
       }
     })
-
-     // res.send('register page')
   }
 }
