@@ -7,7 +7,7 @@ const server = "http://localhost:3000"
 const users = require('./users')
 
 const should = chai.should()
-
+let token = ''
 chai.use(chaiHttp)
 
 userRegister = {
@@ -69,6 +69,7 @@ describe('Routes test', () => {
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.have.property('token')
+          token = res.body.token;
           done()
         }) 
     })
@@ -81,42 +82,56 @@ describe('Routes test', () => {
           done()
         }) 
     })
-  
   })
-/*
-  describe('login page', () => {
-    
-    it('should get a login page', (done) => {
+
+  describe('logged user page', () => {
+    it('should return a user using a valid token', (done) => {
       chai.request(server)
-        .get('/login')
+        .post('/api/user')
+        .send({'token': token})
         .end((err, res) => {
           res.should.have.status(200)
-          res.body.should.be.a('object')
+          res.body.should.have.property('username')
+          res.body.should.have.property('email')
+          res.body.should.have.property('avatar')
+          res.body.should.have.property('podcastSubscribed')
+          res.body.should.have.property('socialNetworks')
           done()
         })
     })
-    it('should post a valid user to login page', (done) => {
-      
+    it('should not return a user, using an invalid token', (done) => {
       chai.request(server)
-        .post('/login')
-        .send({username:'gleider1'})
+        .post('/api/user')
+        .send({'token': 'asdfqwer1234'})
         .end((err, res) => {
-          res.should.have.status(200)
-          res.text.should.eqls('user finded')
+          res.should.have.status(401)
           done()
         })
     })
-    it('should post an invalid user to login page', (done) => {
+  })
+
+  describe('non logged user page', () => {
+    it('should return a valid user', (done) => {
       chai.request(server)
-        .post('/login')
-        .send({username:'test'})
+        .get('/oapi/user/gleider1')
+        .end((err, res) => {
+          res.should.have.status(200)
+          res.body.should.have.property('username')
+          res.body.should.have.property('email')
+          res.body.should.have.property('avatar')
+          res.body.should.have.property('podcastSubscribed')
+          res.body.should.have.property('socialNetworks')
+          done()
+        })
+    })
+    it('should return a invalid user', (done) => {
+      chai.request(server)
+        .get('/oapi/user/abcdef')
         .end((err, res) => {
           res.should.have.status(404)
-          res.should.be.json
-          res.body.should.have.property('username').eqls('user not found')
-          
           done()
         })
     })
-  })*/
+  })
+
 })
