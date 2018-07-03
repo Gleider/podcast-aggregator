@@ -1,6 +1,7 @@
 const express = require('express')
 const login = require('../api/routes/loginRoute')
 const register = require('../api/routes/registerRoute')
+const user = require('../api/routes/userRoute')
 const auth = require('./auth')
 
 module.exports = (server) => {
@@ -32,10 +33,14 @@ module.exports = (server) => {
   // server.route('/register').get(register.registerGet)
   // server.route('/register').post(register.registerPost)
   openApi.post('/validateToken', login.validateToken)
+
+  protectedApi.post('/user', user.userPost)
+
+  openApi.get('/user/:id', user.userGet)
+
+  protectedApi.put('/user/:id/addpodcast', user.addPodcast)
+  //protectedApi.post('/logout', login.logoutRoute)
 /*
-  server.route('/logout').get((req, res, next) => {
-    res.send('logout page')
-  })
 
   server.route('/user/:id').get((req, res, next) => {
     res.send('user page')
