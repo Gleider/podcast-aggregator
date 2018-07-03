@@ -26,11 +26,17 @@ module.exports = {
       }
     })
   },
-  validateToken(req, res, next) {
+  validateToken(req, res) {
     const token = req.body.token || ''
-    jwt.verify(token, env.authSecret, (err, decoded) => {
-      return res.status(200).send({ valid: !err })
+    return jwt.verify(token, env.authSecret, (err, decoded) => {
+      //return res.status(200).send({ valid: !err, dec: decoded })
+      return { valid: !err, dec: decoded }
     })
-  }
+  },
+
+  /*logoutRoute(req, res) {
+    const token = req.body.token
+    
+  }*/
 
 }
