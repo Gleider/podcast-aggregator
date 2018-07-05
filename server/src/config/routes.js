@@ -32,13 +32,15 @@ module.exports = (server) => {
   openApi.get('/register', register.registerGet)
   // server.route('/register').get(register.registerGet)
   // server.route('/register').post(register.registerPost)
-  openApi.post('/validateToken', login.validateToken)
+  //openApi.post('/validateToken', login.validateToken)
 
   protectedApi.post('/user', user.userPost)
 
   openApi.get('/user/:id', user.userGet)
 
-  protectedApi.put('/user/:id/addpodcast', user.addPodcast)
+  protectedApi.put('/addpodcast', user.addPodcast)
+
+  protectedApi.put('/:pod/addepisode', user.addEpisode)
   //protectedApi.post('/logout', login.logoutRoute)
 /*
 
