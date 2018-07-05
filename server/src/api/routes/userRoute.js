@@ -34,21 +34,31 @@ module.exports = {
 
   addPodcast(req, res, next) {
     const validate = valToken.validateToken(req, res)
-    username = validate.dec.userFind.username
+    
+    const username = validate.dec.userFind.username
+    const name = req.body.name
+    const description = req.body.description
+    const image = req.body.image
+    const url = req.body.url
+    const rss = req.body.rss
+
     db.findOneAndUpdate({ username }, {$push:{podcastSubscribed: {
-      name: "podcastname",
-      description: "this is a podcast about...",
-      image: "www.linktoimage.com",
-      url: "www.urltopodcast.com",
-      rss: "www.rsslink.com"
-  }}}).then(
+      name, description, image, url, rss }
+      }}).then(
       res.status(201).send({podcastSubscribed: [{
-            name: "podcastname",
-            description: "this is a podcast about...",
-            image: "www.linktoimage.com",
-            url: "www.urltopodcast.com",
-            rss: "www.rsslink.com"
+        name, description, image, url, rss
         }]})
       )
+  },
+
+  addEpisode(req, res, next) {
+    const validate = valToken.validateToken(req, res)
+
+    const username = validate.dec.userFind.username
+    const podcast = req.params.pod 
+
+    db.findById(podcast, (err, user) => {
+      res.status(200).send("teste")
+    })
   }
 }
