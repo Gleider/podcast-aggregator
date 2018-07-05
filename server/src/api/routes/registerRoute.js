@@ -1,7 +1,6 @@
 const db = require('../db/dbService')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
-//const user = require('./user')
 const env = require('../../.env')
 const user = require('../db/db')
 
@@ -27,7 +26,6 @@ module.exports = {
       if(userFind) {
         return res.status(400).send({ errors: ['User already exists']})
       } else {
-        //const newUser = new user({ username, email, password: passwordHash, name, avatar })
         const newUser = {
           "username": username,
           "email": email,

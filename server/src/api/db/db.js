@@ -43,7 +43,7 @@ const podcastSchema = new mongoose.Schema({
   },
   rss: { 
     type: String, 
-    required: [true, 'Podcast rss is required'] 
+    required: [true, 'Podcast rss is required']
   },
   episodes: [episodeSchema]
 
