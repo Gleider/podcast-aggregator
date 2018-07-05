@@ -10,7 +10,7 @@ const should = chai.should()
 let token = ''
 chai.use(chaiHttp)
 
-userRegister = {
+const userRegister = {
   'username':'gleider1',
   'email':'gleider1@gmail.com',
   'name':'Gleider1',
@@ -18,14 +18,38 @@ userRegister = {
   'confirmPassword':'abc12345'
 }
 
-userLogin = {
+const userRegister2 = {
+  'username':'gleider2',
+  'email':'gleider2@gmail.com',
+  'name':'Gleider2',
+  'password':'abc12345',
+  'confirmPassword':'abc12345'
+}
+
+const userLogin = {
   'username':'gleider1',
   'password':'abc12345'
 }
 
-userLoginInv = {
+const userLoginInv = {
   'username':'gleider66',
   'password':'abc12345'
+}
+
+const podcast1 = {
+  'name':'newpod1',
+  'description':'desc...',
+  'image':'www.image1.com',
+  'url':'www.urlpod.com',
+  'rss':'www.podurl.com',
+}
+
+const podcast2 = {
+  'name':'newpod2',
+  'description':'desc...',
+  'image':'www.image2.com',
+  'url':'www.urlpod.com',
+  'rss':'www.podurl.com',
 }
 
 describe('Routes test', () => {
@@ -132,6 +156,38 @@ describe('Routes test', () => {
           done()
         })
     })
+  })
+
+  describe('add podcasts to users', () => {
+    it('should add a podcast to a valid user', (done) => {
+      chai.request(server)
+        .put('/api/addpodcast')
+        .send({'token':token})
+        .send(podcast1)
+        .end((err, res) => {
+          res.should.have.status(201)
+          res.body.podcastSubscribed[0].should.have.property('name')
+          res.body.podcastSubscribed[0].should.have.property('description')
+          res.body.podcastSubscribed[0].should.have.property('image')
+          res.body.podcastSubscribed[0].should.have.property('url')
+          res.body.podcastSubscribed[0].should.have.property('rss')
+          done()
+        })
+    })
+
+    it('should add other podcast to same user', (done)=> {
+      chai.request(server)
+        .put('/api/addpodcast')
+        .send({'token':token})
+        .send(podcast2)
+        .end((err, res) => {
+          res.should.have.status(201)
+          res.body.podcastSubscribed[0].should.have.property('name').eql('newpod2')
+          done()
+        })
+    })
+    
+    
   })
 
 })
