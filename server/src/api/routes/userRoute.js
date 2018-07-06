@@ -62,18 +62,18 @@ module.exports = {
       'description':'this is a description',
       'image':'www.linktoimage.com'
     }
+
     //res.status(200).send(podcast[0]._id)
-    db.findOne({ username }).then((user) => {
-      //podcast = user.podcastSubscribed
-      res.status(200).send(podcast)
-    }
-    //   db.findOneAndUpdate({ 'name':'newpod1' }, { $push:{episodes:{
-    //   episode
-    // }}}).then(res.status(201).send({episodes:{
-    //   episode
-    // }}))
+    // db.findOne({podcast:{ 'name':'newpod1' }}).then((user) => {
+    //   //podcast = user.podcastSubscribed
+    //   res.status(200).send({user})
+    // }
+      db.findOne({"username":"gleider1"}).children(user => {
+        res.status(200).send(user)
+      })
+      // db.findOneAndUpdate({podcast:{name:'newpod1'}}, { $push:{episodes:{ episode }}}).then(res.status(201).send(podcast))
     
-  )
+  //)
     
     
     //db.findOneAndUpdate({ })
