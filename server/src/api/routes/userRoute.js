@@ -53,12 +53,29 @@ module.exports = {
 
   addEpisode(req, res, next) {
     const validate = valToken.validateToken(req, res)
-
+    const podcastId = req.params.pod
+    const podcast = validate.dec.userFind.podcastSubscribed
     const username = validate.dec.userFind.username
-    const podcast = req.params.pod 
-
-    db.findById(podcast, (err, user) => {
-      res.status(200).send("teste")
-    })
+    
+    const episode = {
+      'title':'episode1',
+      'description':'this is a description',
+      'image':'www.linktoimage.com'
+    }
+    //res.status(200).send(podcast[0]._id)
+    db.findOne({ username }).then((user) => {
+      //podcast = user.podcastSubscribed
+      res.status(200).send(podcast)
+    }
+    //   db.findOneAndUpdate({ 'name':'newpod1' }, { $push:{episodes:{
+    //   episode
+    // }}}).then(res.status(201).send({episodes:{
+    //   episode
+    // }}))
+    
+  )
+    
+    
+    //db.findOneAndUpdate({ })
   }
 }
