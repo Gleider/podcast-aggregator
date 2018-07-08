@@ -62,15 +62,37 @@ module.exports = {
       'description':'this is a description',
       'image':'www.linktoimage.com'
     }
+    // read more: https://stackoverflow.com/questions/16845191/mongoose-finding-subdocuments-by-criteria
+    //and 
+    //https://docs.mongodb.com/manual/reference/operator/query/elemMatch/
+    db.find(
+      { 'podcastSubscribed.name':'newpod1'}, (err, result) => {
+        res.status(201).send(result)
+      }
+    )
+
+    // db.findOneAndUpdate({username}, {'podcastSubscribed.name':'newpod1'},
+    // { 
+    //   $push:{episodes:{
+    //     title: 'episode1',
+    //     description: 'this is a description',
+    //     image: 'www.linktoimage.com'
+    //   }}
+    // }).then(res.status(201).send({episodes:[{
+    //   title: 'episode1',
+    //   description: 'this is a description',
+    //   image: 'www.linktoimage.com'
+    // }]}))
+
 
     //res.status(200).send(podcast[0]._id)
     // db.findOne({podcast:{ 'name':'newpod1' }}).then((user) => {
     //   //podcast = user.podcastSubscribed
     //   res.status(200).send({user})
     // }
-      db.findOne({"username":"gleider1"}).children(user => {
-        res.status(200).send(user)
-      })
+      // db.findOne({"username":"gleider1"}).children(user => {
+      //   res.status(200).send(user)
+      // })
       // db.findOneAndUpdate({podcast:{name:'newpod1'}}, { $push:{episodes:{ episode }}}).then(res.status(201).send(podcast))
     
   //)
