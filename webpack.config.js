@@ -1,20 +1,19 @@
 const path = require("path");
 
 module.exports = {
-  entry: './src/app.js',
+  entry: './client/src/app.js',
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'client', 'public'),
     filename: 'bundle.js'
   },
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
         exclude: /node_module/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [ "env", "react" ]
+            presets: ["env", "react"]
           }
         }
       },

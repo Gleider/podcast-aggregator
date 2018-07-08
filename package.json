@@ -12,7 +12,7 @@
     "test:coverage": "nyc npm test",
     "coveralls": "npm run test:coverage && nyc report --reporter=text-lcov | coveralls",
     "build": "webpack",
-    "build-babel": "babel src/app.js --out-file public/scripts/app.js --presets=env,react"
+    "build-babel": "babel client/src/app.js --out-file client/public/scripts/app.js --presets=env,react"
   },
   "repository": {
     "type": "git",
@@ -31,17 +31,23 @@
   "dependencies": {
     "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.1",
     "express": "^4.16.3",
     "express-query-int": "^3.0.0",
     "jsonwebtoken": "^8.3.0",
+    "jquery": "^3.3.1",
     "lodash": "^4.17.10",
     "mongoose": "^5.1.5",
     "mongoose-paginate": "^5.0.3",
     "mongoose-unique-validator": "^2.0.1",
     "node-restful": "^0.2.6",
-    "pm2": "^2.10.4"
+    "pm2": "^2.10.4",
+    "popper.js": "^1.14.3"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+    "@fortawesome/free-solid-svg-icons": "^5.1.0-11",
+    "@fortawesome/react-fontawesome": "0.1.0-11",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
