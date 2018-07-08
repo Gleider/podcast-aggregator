@@ -53,51 +53,26 @@ module.exports = {
 
   addEpisode(req, res, next) {
     const validate = valToken.validateToken(req, res)
+
+    const title = req.body.title
+    const description = req.body.description
+    const image = req.body.image
+    const duration = req.body.duration || ''
+    const url = req.body.url || ''
+
     const podcastId = req.params.pod
-    const podcast = validate.dec.userFind.podcastSubscribed
     const username = validate.dec.userFind.username
-    
-    const episode = {
-      'title':'episode1',
-      'description':'this is a description',
-      'image':'www.linktoimage.com'
-    }
-    // read more: https://stackoverflow.com/questions/16845191/mongoose-finding-subdocuments-by-criteria
-    //and 
-    //https://docs.mongodb.com/manual/reference/operator/query/elemMatch/
-    db.find(
-      { 'podcastSubscribed.name':'newpod1'}, (err, result) => {
-        res.status(201).send(result)
+
+    db.findOneAndUpdate(
+      { username, 'podcastSubscribed._id':podcastId}, { $push: {'podcastSubscribed.$.episodes':{
+        title, description, image, duration, url
+      }}},
+        (err, result) => {
+          if(err) res.status(404).send('podcast not finded')
+          else res.status(201).send('registered with success')
       }
     )
 
-    // db.findOneAndUpdate({username}, {'podcastSubscribed.name':'newpod1'},
-    // { 
-    //   $push:{episodes:{
-    //     title: 'episode1',
-    //     description: 'this is a description',
-    //     image: 'www.linktoimage.com'
-    //   }}
-    // }).then(res.status(201).send({episodes:[{
-    //   title: 'episode1',
-    //   description: 'this is a description',
-    //   image: 'www.linktoimage.com'
-    // }]}))
-
-
-    //res.status(200).send(podcast[0]._id)
-    // db.findOne({podcast:{ 'name':'newpod1' }}).then((user) => {
-    //   //podcast = user.podcastSubscribed
-    //   res.status(200).send({user})
-    // }
-      // db.findOne({"username":"gleider1"}).children(user => {
-      //   res.status(200).send(user)
-      // })
-      // db.findOneAndUpdate({podcast:{name:'newpod1'}}, { $push:{episodes:{ episode }}}).then(res.status(201).send(podcast))
-    
-  //)
-    
-    
-    //db.findOneAndUpdate({ })
+  
   }
 }
