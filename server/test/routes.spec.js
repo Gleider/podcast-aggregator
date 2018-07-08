@@ -9,7 +9,7 @@ const users = require('./users')
 const should = chai.should()
 let token = ''
 chai.use(chaiHttp)
-
+let podcastId = ''
 const userRegister = {
   'username':'gleider1',
   'email':'gleider1@gmail.com',
@@ -50,6 +50,12 @@ const podcast2 = {
   'image':'www.image2.com',
   'url':'www.urlpod.com',
   'rss':'www.podurl.com',
+}
+
+const episode1 = {
+  'title':'episode1',
+  'description':'a description 1',
+  'image':'www.image.com'
 }
 
 describe('Routes test', () => {
@@ -185,9 +191,21 @@ describe('Routes test', () => {
           res.body.podcastSubscribed[0].should.have.property('name').eql('newpod2')
           done()
         })
-    })
-    
-    
+    })  
   })
+
+  // describe('add episodes to podcasts', () => {
+  //   it('should add a episode to a specific podcast', (done) => {
+  //     console.log('podcastId = ', podcastId)
+  //     chai.request(server)
+  //       .put(`/api/${podcastId}/addepisode`)
+  //       .send({'token':token})
+  //       .send(episode1)
+  //       .end((err, res) => {
+  //         res.should.have.status(201)
+  //         done()
+  //       })
+  //   })
+  // })
 
 })
