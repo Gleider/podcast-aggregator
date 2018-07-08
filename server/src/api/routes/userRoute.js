@@ -72,7 +72,23 @@ module.exports = {
           else res.status(201).send('registered with success')
       }
     )
+  },
+  addNetwork(req, res, next) {
+    const validate = valToken.validateToken(req, res)
 
-  
+    const facebook = req.body.facebook || ''
+    const instagram = req.body.instagram || ''
+    const twitter = req.body.twitter || ''
+    const username = validate.dec.userFind.username
+
+    db.findOneAndUpdate(
+      { username }, { $push: { socialNetwork:{
+        facebook, instagram, twitter
+      }}},
+        (err, result) => {
+          if(err) res.status(404).send('error')
+          else res.status(201).send('registered with success')
+      }
+    )
   }
 }
