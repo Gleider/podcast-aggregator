@@ -1,97 +1,38 @@
 const express = require('express')
+const login = require('../api/routes/loginRoute')
+const register = require('../api/routes/registerRoute')
+const user = require('../api/routes/userRoute')
+const auth = require('./auth')
 
 module.exports = (server) => {
-  const router = express.Router()
-  const nav = express.Router()
 
-  server.use('/api', router)
-  server.use('', nav)
+  const protectedApi = express.Router()
+  server.use('/api', protectedApi)
+
+  const openApi = express.Router()
+  server.use('/oapi', openApi)
+  
+  protectedApi.use(auth)
 
   const DataBase = require('../api/db/dbService')
-  DataBase.register(router, '/db')
+  DataBase.register(openApi, '/db')
+  
+  openApi.post('/login', login.loginPost)
 
- 
-  // navegation methods
-  nav.route('/login').get((req, res, next) => {
-    res.send('login page...')
-  })
+  openApi.get('/login', login.loginGet)
 
-  nav.route('/login').post((req, res, next) => {
-    const username = req.body.username
-    const password = req.body.password
+  openApi.post('/register', register.registerPost)
 
-    res.send(`
-      username: ${username}
-      password: ${password}`)
-  })
+  openApi.get('/register', register.registerGet)
 
-  nav.route('/logout').get((req, res, next) => {
-    res.send('logout page')
-  })
+  protectedApi.post('/user', user.userPost)
 
-  nav.route('/logout').post((req, res, next) => {
-    res.send('logout page')
-  })
+  openApi.get('/user/:id', user.userGet)
 
-  nav.route('/register').get((req, res, next) => {
-    res.send('register page')
-  })
+  protectedApi.put('/addpodcast', user.addPodcast)
 
-  nav.route('/register').post((req, res, next) => {
-    res.send('register page')
-  })
+  protectedApi.put('/:pod/addepisode', user.addEpisode)
 
-  nav.route('/user/:id').get((req, res, next) => {
-    res.send('user page')
-  })
+  protectedApi.put('/addnetwork', user.addNetwork)
 
-  nav.route('/podcast/tags').get((req, res, next) => {
-    res.send('podcast page')
-  })
-
-  nav.route('/podcast/tags/:id').get((req, res, next) => {
-    res.send('podcast tag page')
-  })
-
-  nav.route('/podcast/:id').get((req, res, next) => {
-    res.send('podcast name page')
-  })
-
-  nav.route('/podcast/search').get((req, res, next) => {
-    res.send('podcast search page')
-  })
-
-  nav.route('/podcast/:podcast/:id').get((req, res, next) => {
-    res.send('episode page')
-  })
-
-  nav.route('/podcast/top').get((req, res, next) => {
-    res.send('top page')
-  })
-
-  // just logged
-
-  nav.route('/podcast/:id/subscribe').post((req, res, next) => {
-    res.send('Subscribe podcast page')
-  })
-
-  nav.route('/user/profile').get((req, res, next) => {
-    res.send('profile page')
-  })
-
-  nav.route('/user/profile').put((req, res, next) => {
-    res.send('profile page')
-  })
-
-  nav.route('user/list').get((req, res, next) => {
-    res.send('list podcast page')
-  })
-
-  nav.route('user/list').put((req, res, next) => {
-    res.send('list podcast page')
-  })
-
-  nav.route('user/list').delete((req, res, next) => {
-    res.send('list podcast page')
-  })
 }
