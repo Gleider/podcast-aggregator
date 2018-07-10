@@ -155,7 +155,34 @@ const user3 = {
       }]
     }]
   }
-const user = [user1, user2, user3, user4, user5, user6, user7, user8]
+
+  const userRegister = {
+    'username':'gleider1',
+    'email':'gleider1@gmail.com',
+    'name':'Gleider1',
+    'password':'abc12345',
+    'confirmPassword':'abc12345'
+  }
+  
+  const userRegister2 = {
+    'username':'gleider2',
+    'email':'gleider2@gmail.com',
+    'name':'Gleider2',
+    'password':'abc12345',
+    'confirmPassword':'abc12345'
+  }
+  
+  const userLogin = {
+    'username':'gleider1',
+    'password':'abc12345'
+  }
+  
+  const userLoginInv = {
+    'username':'gleider66',
+    'password':'abc12345'
+  }
+  
+const user = [user1, user2, user3, user4, user5, user6, user7, user8, userRegister, userRegister2, userLogin, userLoginInv]
 
 
 module.exports = user
