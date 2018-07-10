@@ -5,20 +5,19 @@ const db = require('../src/api/db/db')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const users = require('./users')
-const server = "http://localhost:3000"
-const should = chai.should()
+const server = require('./../src/config/config').SERVER
+const db_test = require('./../src/config/config').DB_TEST
 
 chai.use(chaiHttp)
 
 describe('User test', () => {
   before((done) => {
-    mongoose.connect('mongodb://localhost/podcastdb', () => {
+    mongoose.connect(db_test, () => {
       mongoose.connection.db.dropDatabase()
     })
     done()
   })
   
-
   describe('method /GET', () => {
     it('should return a array', (done) => {
       chai.request(server)
