@@ -2,6 +2,7 @@ const express = require('express')
 const login = require('../api/routes/loginRoute')
 const register = require('../api/routes/registerRoute')
 const user = require('../api/routes/userRoute')
+const search = require('../api/routes/searchRoute')
 const auth = require('./auth')
 
 module.exports = (server) => {
@@ -35,4 +36,11 @@ module.exports = (server) => {
 
   protectedApi.put('/addnetwork', user.addNetwork)
 
+  openApi.get('/search', search.generalSearch)
+
+  openApi.get('/top', search.topSearch)
+
+  openApi.get('/tag', search.tagSearch)
+
+  openApi.get('/alltags', search.allTags)
 }

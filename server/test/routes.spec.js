@@ -2,65 +2,20 @@ process.env.NODE_ENV = 'test';
 const mongoose = require('mongoose')
 const chai = require('chai')
 const chaiHttp = require('chai-http')
-const server = "http://localhost:3000"
+const server = require('./../src/config/config').SERVER
+const db_test = require('./../src/config/config').DB_TEST
 
 const users = require('./users')
+const podcasts = require('./podcasts')
 
 const should = chai.should()
 let token = ''
 chai.use(chaiHttp)
 let podcastId = ''
-const userRegister = {
-  'username':'gleider1',
-  'email':'gleider1@gmail.com',
-  'name':'Gleider1',
-  'password':'abc12345',
-  'confirmPassword':'abc12345'
-}
-
-const userRegister2 = {
-  'username':'gleider2',
-  'email':'gleider2@gmail.com',
-  'name':'Gleider2',
-  'password':'abc12345',
-  'confirmPassword':'abc12345'
-}
-
-const userLogin = {
-  'username':'gleider1',
-  'password':'abc12345'
-}
-
-const userLoginInv = {
-  'username':'gleider66',
-  'password':'abc12345'
-}
-
-const podcast1 = {
-  'name':'newpod1',
-  'description':'desc...',
-  'image':'www.image1.com',
-  'url':'www.urlpod.com',
-  'rss':'www.podurl.com',
-}
-
-const podcast2 = {
-  'name':'newpod2',
-  'description':'desc...',
-  'image':'www.image2.com',
-  'url':'www.urlpod.com',
-  'rss':'www.podurl.com',
-}
-
-const episode1 = {
-  'title':'episode1',
-  'description':'a description 1',
-  'image':'www.image.com'
-}
 
 describe('Routes test', () => {
   before((done) => {
-    mongoose.connect('mongodb://localhost/podcastdb', () => {
+    mongoose.connect(db_test, () => {
       mongoose.connection.db.dropDatabase()
     })
 
@@ -75,7 +30,7 @@ describe('Routes test', () => {
     it('should register a valid user', (done) => {
       chai.request(server)
         .post('/oapi/register')
-        .send(userRegister)
+        .send(users[8])
         .end((err, res) => {
           res.should.have.status(200)
           done()
@@ -84,7 +39,7 @@ describe('Routes test', () => {
     it('should register a user that already registered', (done) => {
       chai.request(server)
         .post('/oapi/register')
-        .send(userRegister)
+        .send(users[8])
         .end((err, res) => {
           res.should.have.status(400)
           done()
@@ -95,7 +50,7 @@ describe('Routes test', () => {
     it('should return a token to login page', (done) => {
       chai.request(server)
         .post('/oapi/login')
-        .send(userLogin)
+        .send(users[10])
         .end((err, res) => {
           res.should.have.status(200)
           res.body.should.have.property('token')
@@ -106,7 +61,7 @@ describe('Routes test', () => {
     it('should return a error, user or password do not exists', (done) => {
       chai.request(server)
         .post('/oapi/login')
-        .send(userLoginInv)
+        .send(users[11])
         .end((err, res) => {
           res.should.have.status(404)
           done()
@@ -169,7 +124,7 @@ describe('Routes test', () => {
       chai.request(server)
         .put('/api/addpodcast')
         .send({'token':token})
-        .send(podcast1)
+        .send(podcasts[0])
         .end((err, res) => {
           res.should.have.status(201)
           res.body.podcastSubscribed[0].should.have.property('name')
@@ -185,7 +140,7 @@ describe('Routes test', () => {
       chai.request(server)
         .put('/api/addpodcast')
         .send({'token':token})
-        .send(podcast2)
+        .send(podcasts[1])
         .end((err, res) => {
           res.should.have.status(201)
           res.body.podcastSubscribed[0].should.have.property('name').eql('newpod2')
