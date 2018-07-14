@@ -1,5 +1,8 @@
 const valToken = require('./loginRoute')
 const db = require('../db/dbService')
+const path = require('path')
+//const server = require('../../config/server')
+
 
 module.exports = {
   userPost(req, res, next) {
@@ -16,8 +19,9 @@ module.exports = {
   },
 
   userGet(req, res, next) {
-    //'/user/:id'
     const username = req.params.id
+   
+    
     db.findOne({ username }).then(userFind => {
       if (userFind){
         const email = userFind.email
@@ -25,7 +29,11 @@ module.exports = {
         const avatar = userFind.avatar
         const podcastSubscribed = userFind.podcastSubscribed || []
         const socialNetworks = userFind.podcastNetworks || []
-        res.status(200).send({ username, email, name, avatar, podcastSubscribed, socialNetworks })
+        //res.status(200).send({ username, email, name, avatar, podcastSubscribed, socialNetworks })
+        
+        //res.status(200).send(__dirname + '../../../../client')
+        
+
       } else {
         res.status(404).send('user not registered' )
       }

@@ -4,6 +4,9 @@ const register = require('../api/routes/registerRoute')
 const user = require('../api/routes/userRoute')
 const search = require('../api/routes/searchRoute')
 const auth = require('./auth')
+const path = require('path')
+
+const app = express()
 
 module.exports = (server) => {
 
@@ -43,4 +46,11 @@ module.exports = (server) => {
   openApi.get('/tag', search.tagSearch)
 
   openApi.get('/alltags', search.allTags)
+  
+  app.use(express.static('../../../client'))
+  openApi.get('/test', (req, res) => {
+    
+    res.sendFile(path.join(__dirname, '../../../client'), 'index.html')
+    res.end()
+  })
 }
