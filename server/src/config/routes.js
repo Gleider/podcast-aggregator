@@ -5,6 +5,8 @@ const user = require('../api/routes/userRoute')
 const search = require('../api/routes/searchRoute')
 const auth = require('./auth')
 const path = require('path')
+const bodyParser = require('body-parser')
+
 
 const app = express()
 
@@ -47,10 +49,27 @@ module.exports = (server) => {
 
   openApi.get('/alltags', search.allTags)
   
-  app.use(express.static('../../../client'))
-  openApi.get('/test', (req, res) => {
+//openApi.use(express.static('../../../client'))
+var options = {
+  dotfiles: 'ignore',
+  etag: true,
+  extensions: ['htm', 'html'],
+  index: 'index.html',
+  lastModified: true,
+  maxAge: '1d',
+  setHeaders: function (res, path, stat) {
+    res.set('x-timestamp', Date.now());
+    res.header('Cache-Control', 'public, max-age=1d');
+  }
+};
+
+openApi.use(bodyParser.urlencoded({ extended: true }));
+openApi.use(bodyParser.json());
+
+  openApi.use('/test', express.static(__dirname + '../../../client', options))
+  // openApi.use('/test', (req, res) => {
     
-    res.sendFile(path.join(__dirname, '../../../client'), 'index.html')
-    res.end()
-  })
+  //   res.sendFile(path.resolve(__dirname, '../../../client'), 'index.html')
+  //   res.end()
+  // })
 }
