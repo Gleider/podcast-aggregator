@@ -5,8 +5,6 @@ const user = require('../api/routes/userRoute')
 const search = require('../api/routes/searchRoute')
 const auth = require('./auth')
 const path = require('path')
-const bodyParser = require('body-parser')
-
 
 const app = express()
 
@@ -17,6 +15,8 @@ module.exports = (server) => {
 
   const openApi = express.Router()
   server.use('/oapi', openApi)
+
+  openApi.use(express.static(__dirname + '../../../../client'));
   
   protectedApi.use(auth)
 
@@ -48,28 +48,10 @@ module.exports = (server) => {
   openApi.get('/tag', search.tagSearch)
 
   openApi.get('/alltags', search.allTags)
-  
-//openApi.use(express.static('../../../client'))
-var options = {
-  dotfiles: 'ignore',
-  etag: true,
-  extensions: ['htm', 'html'],
-  index: 'index.html',
-  lastModified: true,
-  maxAge: '1d',
-  setHeaders: function (res, path, stat) {
-    res.set('x-timestamp', Date.now());
-    res.header('Cache-Control', 'public, max-age=1d');
-  }
-};
 
-openApi.use(bodyParser.urlencoded({ extended: true }));
-openApi.use(bodyParser.json());
+  openApi.get('/test/:id', user.userGet)
+  // openApi.get('/test', function(req, res) {
+  //   res.sendFile(path.join(__dirname + '../../../../client/index.html'));
+  // });
 
-  openApi.use('/test', express.static(__dirname + '../../../client', options))
-  // openApi.use('/test', (req, res) => {
-    
-  //   res.sendFile(path.resolve(__dirname, '../../../client'), 'index.html')
-  //   res.end()
-  // })
 }
