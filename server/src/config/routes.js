@@ -16,7 +16,7 @@ module.exports = (server) => {
   const openApi = express.Router()
   server.use('/oapi', openApi)
 
-  openApi.use(express.static(__dirname + '../../../../client'));
+  
   
   protectedApi.use(auth)
 
@@ -49,7 +49,23 @@ module.exports = (server) => {
 
   openApi.get('/alltags', search.allTags)
 
-  openApi.get('/test/:id', user.userGet)
+  //openApi.get('/test/:id', user.userGet)
+  openApi.use(express.static(__dirname + '../../../../client'))
+  openApi.get('/test/:id', (req, res) => {
+    const promise = new Promise((resolve, reject) => {
+        resolve(user.userGet(req, resolve))
+    })
+    promise
+      .then((result) => {
+      
+      console.log(result)
+      .then(resolve.sendFile(path.join(__dirname + '../../../../client/index.html')))
+    })
+   
+    
+  }
+)
+  
   // openApi.get('/test', function(req, res) {
   //   res.sendFile(path.join(__dirname + '../../../../client/index.html'));
   // });

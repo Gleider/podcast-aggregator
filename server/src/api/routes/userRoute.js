@@ -21,7 +21,7 @@ module.exports = {
   userGet(req, res, next) {
     const username = req.params.id
    
-    db.findOne({ username }).then(userFind => {
+    return db.findOne({ username }).then(userFind => {
       if (userFind){
         const email = userFind.email
         const name = userFind.name
@@ -29,8 +29,8 @@ module.exports = {
         const podcastSubscribed = userFind.podcastSubscribed || []
         const socialNetworks = userFind.podcastNetworks || []
         //res.status(200).send({ username, email, name, avatar, podcastSubscribed, socialNetworks })
-        res.sendFile(path.join(__dirname + '../../../../../client/index.html'))
-       
+        //res.sendFile(path.join(__dirname + '../../../../../client/index.html'))
+        return { username, email, name, avatar, podcastSubscribed, socialNetworks }
         //res.status(200).send(__dirname + '../../../../client')
         
 
