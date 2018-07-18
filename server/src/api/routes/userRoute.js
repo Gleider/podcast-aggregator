@@ -20,7 +20,7 @@ module.exports = {
 
   userGet(req, res, next) {
     const username = req.params.id
-   
+
     return db.findOne({ username }).then(userFind => {
       if (userFind){
         const email = userFind.email
