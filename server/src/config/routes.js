@@ -55,6 +55,10 @@ module.exports = (server) => {
 
   openApi.get('/alltags', search.allTags)
 
+  openApi.get('/test', (req, res) => {
+    res.send({ express: 'Hello From Express' })
+  })
+
   //openApi.get('/test/:id', user.userGet)
   protectedApiUser.use(express.static(__dirname + '../../../../client'))
   openApiUser.use(express.static(__dirname + '../../../../client'))
