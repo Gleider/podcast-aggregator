@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Component2 from './Component2'
+import Family from './Family'
+import Member from './Member'
 
 class App extends Component {
   state = {
@@ -28,6 +31,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
+        <Component2 value="teste with params"/>
+        <Family>
+          <Member name="Gleider" lastName="Campos"/>
+          <Member name="Gabi" lastName="Poncet"/>
+        </Family>
         <p className="App-intro">{this.state.response}</p>
       </div>
     );

@@ -5,7 +5,7 @@
   "main": "server/src/loader.js",
   "scripts": {
     "client": "cd client && npm start",
-    "server": "node server/src/config/server.js",
+    "server": "nodemon",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "devServer": "nodemon",
     "production": "pm2 start server/src/loader.js --name podcast-backend",
