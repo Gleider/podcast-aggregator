@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import SignUpForm from './pages/SignUpForm';
+import SignInForm from './pages/SignInForm';
 import './App.css';
-import Component2 from './Component2'
-import Family from './Family'
-import Member from './Member'
 
+//continue video on 22minutes
 class App extends Component {
   state = {
     response: ''
@@ -26,18 +26,26 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <Component2 value="teste with params"/>
-        <Family>
-          <Member name="Gleider" lastName="Campos"/>
-          <Member name="Gabi" lastName="Poncet"/>
-        </Family>
-        <p className="App-intro">{this.state.response}</p>
-      </div>
+      <Router>
+        <div className="App">
+          <div className="App__Aside"></div>
+          <div className="App__Form">
+            <div className="PageSwitcher">
+              <a href="#" className="PageSwitcher__Item">Sign In</a>
+              <a href="#" className="PageSwitcher__Item PageSwitcher__Item--Active">Sign Up</a>
+            </div>
+            
+            <div className="FormTitle">
+              <Link to="/sign-in" className="FormTitle__Link">Sign In</Link> or 
+              <Link to="/" className="FormTitle__Link">Sign Up</Link>
+            </div>
+
+            <Route exact path="/" component={SignUpForm}></Route>
+            <Route path="/sign-in" component={SignInForm}></Route>
+
+          </div>
+        </div>
+      </Router>
     );
   }
 }
