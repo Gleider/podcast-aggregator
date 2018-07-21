@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class SignInForm extends Component {
   render() {
@@ -18,7 +19,7 @@ class SignInForm extends Component {
           
           <div className="FormField">
             <button className="FormField__Button mr-20">Sign In</button>
-            <a href="#" className="FormField__Link">Create an account</a>
+            <Link to="/" className="FormField__Link">Create an account</Link>
           </div>
         </form>
       </div>
