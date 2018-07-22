@@ -9,7 +9,7 @@ class SignInForm extends Component {
       info: []
     }
   }
-  infoDidMount(){
+  componentDidMount(){
     fetch('/oapi/db')
       .then(res => res.json())
       .then(info => this.setState({ info }, () => console.log(info)))
