@@ -2,6 +2,19 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 class SignInForm extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      info: []
+    }
+  }
+  infoDidMount(){
+    fetch('/oapi/db')
+      .then(res => res.json())
+      .then(info => this.setState({ info }, () => console.log(info)))
+
+  }
   render() {
     return (
       <div className="FormCenter">
