@@ -1,7 +1,45 @@
 .arrow{
-  background-color: #FFF;
+  background-color: #66DAC7;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   margin-right: 20vw; 
+  position: fixed;
+  transition: 1s ease-in-out;
 }
+.modify{
+  position: relative;
+  display: block;
+  width: 32px;
+  height: 5px;
+  top: 28px;
+  left: 10px;
+ 
+}
+.modify:before,
+.modify:after{
+  background: #000;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  
+}
+.modify:before {
+  top: -13px;
+  transform: rotate(35deg);
+}
+.modify:after{
+  top: 3px;
+  transform: rotate(-35deg);
+}
+
+input {
+  display: none;
+}
+
+input:checked ~ label .arrow{
+  transform: rotate(180deg)
+}
+
