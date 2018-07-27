@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import AppForm from './pages/AppForm';
-import './pages/css/animateArrow.css'
-import Menu from './pages/Menu';
+import AppAside from './pages/AppAside';
+import './pages/css/animateArrow.css';
 import './App.css';
 
 class App extends Component {
@@ -14,11 +14,8 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <div className="App__Aside">
-            <Route path='/' component={Menu}></Route>
+          <AppAside />
 
-          </div>
-          
           <AppForm />
         </div>
       </Router>
