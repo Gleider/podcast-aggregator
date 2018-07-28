@@ -16,8 +16,7 @@
   overflow: auto;
 }
 .App__Aside-full {
-  width: 100%;
-  background-color: #66DAC7;
+  display: none;
 }
 
 .PageSwitcher {
