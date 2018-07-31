@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import AnimationArrow from './AnimateArrow';
 import PageSwitcher from './PageSwitcher';
 import SignUpForm from './SignUpForm';

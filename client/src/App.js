@@ -16,9 +16,8 @@ class App extends Component {
       <Router>
         <div className="App">
           {/* <NavLink exact to="/" activeClassName="App__Aside-full"></NavLink> */}
-          {/* <PageSwitcher /> */}
           <AppAside />
-
+          
           <Route path="/sign-up" component={AppForm}></Route>
           <Route path="/sign-in" component={AppForm}></Route>
         </div>
