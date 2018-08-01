@@ -1,2 +1,2 @@
-# Geckos-Team-11
-Add-project-description-here | Voyage-5 | chingu.io
+# Podcast Aggregator
+This project will be a opensorce podcast aggregator. Soon more informations.
