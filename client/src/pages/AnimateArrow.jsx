@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import './css/animateArrow.css'
 
-class AnimateArrow extends Component {
-  render(){
-    return (
+export default () => 
       <div>
       <input id="check-arrow" type="checkbox"/>
       <label for="check-arrow">
@@ -12,8 +10,5 @@ class AnimateArrow extends Component {
         </div>
       </label>
       </div>
-    );
-  }
-}
- 
-export default AnimateArrow;
+    
+

@@ -6,9 +6,7 @@ import SignUpForm from './SignUpForm';
 import SignInForm from './SignInForm';
 import FormTitle from './FormTitle';
 
-class AppForm extends Component {
-  render(){
-    return (
+ export default () => (
       <div className="App__Form">
         <Route path="/" component={AnimationArrow}></Route>
         <PageSwitcher />
@@ -19,7 +17,3 @@ class AppForm extends Component {
 
       </div>
     )
-  }
-}
-
-export default AppForm;
