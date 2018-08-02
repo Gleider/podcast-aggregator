@@ -6,6 +6,11 @@ import PageSwitcher from './pages/PageSwitcher';
 import './pages/css/animateArrow.css';
 import './App.css';
 
+import Logo from './templates/Logo'
+import Nav from './templates/Nav'
+import Main from './templates/Main'
+import Footer from './templates/Footer'
+
 class App extends Component {
   state = {
     response: ''
@@ -13,16 +18,23 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="App">
-          {/* <NavLink exact to="/" activeClassName="App__Aside-full"></NavLink> */}
-          <AppAside />
+      <div className="app">
+        <Logo />
+        <Nav />
+        <Main />
+        <Footer />
+      </div>
+
+      // <Router>
+      //   <div className="App">
+      //     {/* <NavLink exact to="/" activeClassName="App__Aside-full"></NavLink> */}
+      //     <AppAside />
           
-          <Route path="/sign-up" component={AppForm}></Route>
-          <Route path="/sign-in" component={AppForm}></Route>
-        </div>
-      </Router>
-    );
+      //     <Route path="/sign-up" component={AppForm}></Route>
+      //     <Route path="/sign-in" component={AppForm}></Route>
+      //   </div>
+      // </Router>
+    )
   }
 }
 
