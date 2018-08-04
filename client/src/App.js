@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
-import AppForm from './pages/AppForm';
-import AppAside from './pages/AppAside';
-import PageSwitcher from './pages/PageSwitcher';
+// import { BrowserRouter as Router, Route, Link, NavLink } from 'react-router-dom';
+// import AppForm from './pages/AppForm';
+// import AppAside from './pages/AppAside';
+// import PageSwitcher from './pages/PageSwitcher';
 import './pages/css/animateArrow.css';
 import './App.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'font-awesome/css/font-awesome.min.css'
 import Logo from './templates/Logo'
 import Nav from './templates/Nav'
 import Main from './templates/Main'
@@ -21,7 +23,7 @@ class App extends Component {
       <div className="app">
         <Logo />
         <Nav />
-        <Main />
+        <Main icon="home" title="Home" subtitle="home page"/>
         <Footer />
       </div>
 
