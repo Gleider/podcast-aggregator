@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 // import AppAside from './pages/AppAside';
 // import PageSwitcher from './pages/PageSwitcher';
 import './pages/css/animateArrow.css';
-import './App.css';
+//import './App.css';
 import { BrowserRouter } from 'react-router-dom'
 import Routes from './main/Routes'
 import 'bootstrap/dist/css/bootstrap.min.css'
