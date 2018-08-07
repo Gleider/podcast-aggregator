@@ -1,45 +1,23 @@
 import React,{Component} from 'react'
 import { Button, Input, Card, CardBody, CardTitle } from 'mdbreact';
-
+import './Search.css'
 class Search extends Component {
 
-  constructor(){
-    super();
-    this.state = {
-      podcasts: []
-    }
+  constructor(props){
+    super(props);
 
+    this.state = {
+      podcasts: null,
+      isLoading: false,
+      error: null
+    }
+    // this.callTop = this.callTop.bind(this);
+    
   }
 
   componentDidMount(){
-    this.callTop()
-    const podcasts = this.state
-    console.log(podcasts)
-    // const filteredPodcasts = podcasts.filter( podcast =>{
-    //   return podcast.title.toLowerCase().indexOf( podcasts.toLowerCase() ) !== -1
-  // })
-  }
-
-  renderPodcast = podcast =>{
-    const {search} = this.state;
-    var code = podcast.code.toLowerCase()
-
-    /*if( search !== "" && podcast.name.toLowerCase().indexOf( search.toLowerCase() ) === -1 ){
-        return null
-    }*/
-
-    return <div className="col-md-3" style={{ marginTop : '20px' }}>
-        <Card>
-            <CardBody>
-                <p className=""></p>
-                <CardTitle title={podcast.title}>{podcast.title.substring(0, 15)}{ podcast.title.length > 15 && "..."}</CardTitle>
-            </CardBody>
-        </Card>
-    </div>
-}
-
-  callTop(){
-    fetch('/oapi/top', {
+    this.setState({ isLoading: true })
+    fetch('/oapi/top?n=50', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -48,26 +26,30 @@ class Search extends Component {
    
     })
     .then((response) => response.json())
-    .then((podcasts) => {
-      //console.log(typeof(responseData))
-      this.setState({podcasts})
-      //return responseData
-        //console.log("Response:",responseData);
-    })
+    .then(podcasts => {this.setState({podcasts, isLoading: false})})
     .catch((error) => {
-        console.log('problem while adding data', error);
+        this.setState({ error, isLoading: false})
     })
   }
+  
   render() {
+    const {podcasts, isLoading, error} = this.state
     
-   
-    
+    if(error)
+      return <p>{error.message}</p>
+    if(isLoading || podcasts === null)
+      return <p>Loading..</p>
     return (
     <div>
-      <Input label="Search Podcast" icon="search" onChange={this.onchange}/>
-      {/* {filteredPodcasts.map(podcast => {
-        return this.renderPodcast(podcast)
-      })} */}
+      <Input label="Search Podcast" icon="search"/>
+      <div className="row">
+        <ul className="show-podcasts">
+          {podcasts.map(pod => {
+              return <li><img src={pod.logo_url} className="img-config"/><br/>{pod.title.substring(0, 15)}{ pod.title.length > 15 && "..."}</li>
+  
+          })}
+        </ul>
+      </div>
     </div>
     )
   }

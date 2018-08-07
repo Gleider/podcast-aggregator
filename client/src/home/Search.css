@@ -11,3 +11,21 @@
 .col {
   float: left;
 }
+
+.img-config{
+  width: 20vh;
+}
+
+.show-podcasts{
+  display: grid;
+  grid-template-areas: "pod pod pod pod";
+  grid-template-rows: 40vh;
+  grid-template-columns: 20vw 20vw 20vw;
+  background-color: lightblue;
+  margin: 2vw;
+
+}
+.podcast{
+  grid-area: pod;
+  background-color: lightblue;
+}

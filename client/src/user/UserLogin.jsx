@@ -14,7 +14,8 @@ class SignInForm extends Component {
   constructor(){
     super();
     this.state = {
-      info: []
+      username: null,
+      token: null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -46,7 +47,10 @@ class SignInForm extends Component {
     })
     .then((response) => response.json())
     .then((responseData) => {
-        console.log("Response:",responseData);
+      if(responseData.username === 'user or password invalid')
+        this.setState({username: null, token: null});
+      else
+        this.setState({username: responseData.username, token: responseData.token})
     })
     .catch((error) => {
         console.log('problem while adding data', error);
@@ -78,15 +82,29 @@ class SignInForm extends Component {
 
   }
 
-
   render() {
-    return (
-      <Main {...headerProps}>
-        {this.createForm()}
-      </Main>
-    )
+    const {username, token} = this.state
+    if(token === null){
+      return (
+        <Main {...headerProps}>
+          
+            {this.createForm()}
+          
+        </Main>
+    
+      )
+    }
+    else{
+      headerProps.subtitle = `Hello ${username}`
+      return (
+        <Main {...headerProps}>
+          <h1>logged</h1>
+        </Main>
+      )
+    }
   }
-
 }
+
+
 
 export default SignInForm;
