@@ -1,72 +1,77 @@
-import React, { Component } from 'react';
-import { Button, Input, Footer, Card, CardBody, CardImage, CardTitle, CardText } from 'mdbreact';
-
-
-import countriesList from './countries.json'
+import React,{Component} from 'react'
+import { Button, Input, Card, CardBody, CardTitle } from 'mdbreact';
 
 class Search extends Component {
 
-    state = {
-        search : ""
+  constructor(){
+    super();
+    this.state = {
+      podcasts: []
     }
 
-    renderCountry = country =>{
-        const {search} = this.state;
-        var code = country.code.toLowerCase()
+  }
 
-        /*if( search !== "" && country.name.toLowerCase().indexOf( search.toLowerCase() ) === -1 ){
-            return null
-        }*/
+  componentDidMount(){
+    this.callTop()
+    const podcasts = this.state
+    console.log(podcasts)
+    // const filteredPodcasts = podcasts.filter( podcast =>{
+    //   return podcast.title.toLowerCase().indexOf( podcasts.toLowerCase() ) !== -1
+  // })
+  }
 
-        return <div className="col-md-3" style={{ marginTop : '20px' }}>
-            <Card>
-                <CardBody>
-                    <p className=""></p>
-                    <CardTitle title={country.name}>{country.name.substring(0, 15)}{ country.name.length > 15 && "..."}</CardTitle>
-                </CardBody>
-            </Card>
-        </div>
-    }
+  renderPodcast = podcast =>{
+    const {search} = this.state;
+    var code = podcast.code.toLowerCase()
 
-    onchange = e =>{
-        this.setState({ search : e.target.value });
-    }
+    /*if( search !== "" && podcast.name.toLowerCase().indexOf( search.toLowerCase() ) === -1 ){
+        return null
+    }*/
 
-    render() {
-
-        const {search} = this.state;
-        const filteredCountries = countriesList.filter( country =>{
-            return country.name.toLowerCase().indexOf( search.toLowerCase() ) !== -1
-        })
-
-        return (
-            <div className="flyout">
-            <main style={{marginTop: '4rem'}}>
-                <div className="container">
-                    <div className="row">
-                        <div className="col"></div>
-                        <div className="col">
-                            <Input label="Search Country" icon="search" onChange={this.onchange}/>
-                        </div>
-                        <div className="col"></div>
-                    </div>
-                    <div className="row">
-                        {
-                            filteredCountries.map( country =>{
-                                return this.renderCountry(country)
-                            })
-                        }
-                    </div>
-                </div>
-            </main>
-            <Footer color="indigo">
-                <p className="footer-copyright mb-0">
-                &copy; {(new Date().getFullYear())} Copyright
-                </p>
-            </Footer>
-            </div>
-        );
-    }
+    return <div className="col-md-3" style={{ marginTop : '20px' }}>
+        <Card>
+            <CardBody>
+                <p className=""></p>
+                <CardTitle title={podcast.title}>{podcast.title.substring(0, 15)}{ podcast.title.length > 15 && "..."}</CardTitle>
+            </CardBody>
+        </Card>
+    </div>
 }
 
-export default Search;
+  callTop(){
+    fetch('/oapi/top', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+   
+    })
+    .then((response) => response.json())
+    .then((podcasts) => {
+      //console.log(typeof(responseData))
+      this.setState({podcasts})
+      //return responseData
+        //console.log("Response:",responseData);
+    })
+    .catch((error) => {
+        console.log('problem while adding data', error);
+    })
+  }
+  render() {
+    
+   
+    
+    return (
+    <div>
+      <Input label="Search Podcast" icon="search" onChange={this.onchange}/>
+      {/* {filteredPodcasts.map(podcast => {
+        return this.renderPodcast(podcast)
+      })} */}
+    </div>
+    )
+  }
+
+}
+
+export default Search
