@@ -6,7 +6,9 @@ import Main from '../templates/Main'
 const headerProps = {
   icon: 'user-circle',
   title: 'Login',
-  subtitle: ''
+  subtitle: '',
+  username: null,
+  token: null
 }
 
 class SignInForm extends Component {
@@ -14,8 +16,8 @@ class SignInForm extends Component {
   constructor(){
     super();
     this.state = {
-      username: null,
-      token: null
+      user: headerProps.username,
+      tkn: headerProps.token
     }
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -47,10 +49,18 @@ class SignInForm extends Component {
     })
     .then((response) => response.json())
     .then((responseData) => {
-      if(responseData.username === 'user or password invalid')
-        this.setState({username: null, token: null});
-      else
-        this.setState({username: responseData.username, token: responseData.token})
+      if(responseData.username === 'user or password invalid'){
+
+        headerProps.username = null
+        headerProps.token = null
+      }
+      else{
+        headerProps.token = responseData.token
+        headerProps.username = responseData.username
+        this.setState({user: headerProps.username, tkn: headerProps.token})
+    
+      }
+       
     })
     .catch((error) => {
         console.log('problem while adding data', error);
@@ -83,8 +93,12 @@ class SignInForm extends Component {
   }
 
   render() {
-    const {username, token} = this.state
+    //const {username, token} = this.state
+    const username = headerProps.username
+    const token = headerProps.token
     if(token === null){
+      console.log(token)
+      
       return (
         <Main {...headerProps}>
           
@@ -95,6 +109,7 @@ class SignInForm extends Component {
       )
     }
     else{
+      
       headerProps.subtitle = `Hello ${username}`
       return (
         <Main {...headerProps}>
